@@ -1,4 +1,4 @@
-# box3d
+# box3d-wasm
 
 [Box3D](https://github.com/erincatto/box3d) compiled to WebAssembly, with SIMD and optional wasm threads. Works in browsers and Node.js from a single package.
 
@@ -7,13 +7,13 @@ Box3D is a 3D rigid body physics engine written by Erin Catto, the author of Box
 ## Install
 
 ```bash
-npm i box3d
+npm i box3d-wasm
 ```
 
 ## Quick start
 
 ```js
-import Box3D from 'box3d';
+import Box3D from 'box3d-wasm';
 
 const b3 = await Box3D();
 
@@ -38,11 +38,11 @@ The same code runs in Node.js and in the browser. The wasm file is loaded relati
 
 | import | SIMD | threads | notes |
 | --- | --- | --- | --- |
-| `box3d` | yes | no | works everywhere, no special headers |
-| `box3d/deluxe` | yes | yes | needs cross-origin isolation in browsers |
+| `box3d-wasm` | yes | no | works everywhere, no special headers |
+| `box3d-wasm/deluxe` | yes | yes | needs cross-origin isolation in browsers |
 
 ```js
-import Box3D from 'box3d/deluxe';
+import Box3D from 'box3d-wasm/deluxe';
 
 const b3 = await Box3D();
 const world = new b3.World({ gravity: { x: 0, y: -10, z: 0 }, workerCount: 4 });

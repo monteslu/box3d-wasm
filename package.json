@@ -1,5 +1,5 @@
 {
-  "name": "box3d",
+  "name": "box3d-wasm",
   "version": "0.1.0",
   "description": "Box3D, Erin Catto's 3D physics engine, compiled to WebAssembly with SIMD and optional wasm threads. Isomorphic: works in browsers and Node.js.",
   "type": "module",

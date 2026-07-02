@@ -32,14 +32,17 @@ for (let i = 0; i < 120; i++) {
 console.log(body.getPosition()); // { x: ~0, y: ~0.5, z: ~0 }
 ```
 
-The same code runs in Node.js and in the browser. The wasm file is loaded relative to the module, so bundlers that understand `new URL(..., import.meta.url)` (Vite, webpack 5, Rollup) pick it up automatically.
+The same code runs in Node.js and in the browser. The default import auto-detects the runtime and loads the best build: threads when SharedArrayBuffer is available, SIMD when the engine supports it, and a portable scalar build otherwise. The wasm file is loaded relative to the module, so bundlers that understand `new URL(..., import.meta.url)` (Vite, webpack 5, Rollup) pick it up automatically.
 
 ## Flavours
 
-| import | SIMD | threads | notes |
+| import | SIMD | threads | picked by the default import when |
 | --- | --- | --- | --- |
-| `box3d-wasm` | yes | no | works everywhere, no special headers |
-| `box3d-wasm/deluxe` | yes | yes | needs cross-origin isolation in browsers |
+| `box3d-wasm/deluxe` | yes | yes | SIMD available and SharedArrayBuffer usable (Node.js, or a cross-origin isolated page) |
+| `box3d-wasm/standard` | yes | no | SIMD available, threads not |
+| `box3d-wasm/compat` | no | no | everything else |
+
+`box3d-wasm` (the default import) runs the detection above and returns whichever module fits. Import a specific flavour directly when you want to skip detection:
 
 ```js
 import Box3D from 'box3d-wasm/deluxe';
@@ -48,7 +51,7 @@ const b3 = await Box3D();
 const world = new b3.World({ gravity: { x: 0, y: -10, z: 0 }, workerCount: 4 });
 ```
 
-`workerCount` enables Box3D's internal multithreaded solver. It is clamped to `[1, b3.maxWorkers]`. The standard build ignores it and always runs single threaded. Check `b3.threaded` at runtime to see which build you have.
+`workerCount` enables Box3D's internal multithreaded solver. It is clamped to `[1, b3.maxWorkers]`. The single threaded builds ignore it. Check `b3.threaded` at runtime to see which build you got.
 
 ### Serving requirements for threads
 

@@ -17,6 +17,8 @@ export default [
         fetch: 'readonly',
         navigator: 'readonly',
         globalThis: 'readonly',
+        WebAssembly: 'readonly',
+        SharedArrayBuffer: 'readonly',
       },
     },
     rules: {

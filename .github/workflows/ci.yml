@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 4.0.18
+          actions-cache-folder: emsdk-cache
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch pinned Box3D source
+        run: npm run fetch-deps
+
+      - name: Build wasm (standard and deluxe)
+        run: npm run build
+
+      - name: Lint JavaScript
+        run: npm run lint
+
+      - name: Lint native glue
+        run: npm run lint:native
+
+      - name: Test
+        run: npm test
+
+      - name: Upload dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/

@@ -1,0 +1,5 @@
+node_modules/
+deps/
+build/
+dist/
+*.log

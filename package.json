@@ -1,0 +1,57 @@
+{
+  "name": "box3d",
+  "version": "0.1.0",
+  "description": "Box3D, Erin Catto's 3D physics engine, compiled to WebAssembly with SIMD and optional wasm threads. Isomorphic: works in browsers and Node.js.",
+  "type": "module",
+  "main": "dist/box3d.mjs",
+  "exports": {
+    ".": "./dist/box3d.mjs",
+    "./deluxe": "./dist/box3d.deluxe.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "LICENSE.box3d.txt"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "fetch-deps": "bash scripts/fetch-deps.sh",
+    "build": "bash scripts/build.sh",
+    "build:debug": "TARGET_TYPE=Debug bash scripts/build.sh",
+    "test": "node --test \"test/*.test.mjs\"",
+    "lint": "eslint .",
+    "lint:native": "clang-format --dry-run --Werror csrc/*.cpp"
+  },
+  "keywords": [
+    "physics",
+    "3d",
+    "box3d",
+    "box2d",
+    "wasm",
+    "webassembly",
+    "simd",
+    "threads",
+    "rigid-body",
+    "game",
+    "simulation"
+  ],
+  "author": "Luis Montes",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monteslu/box3d-wasm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/monteslu/box3d-wasm/issues"
+  },
+  "homepage": "https://github.com/monteslu/box3d-wasm#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "clang-format": "^1.8.0",
+    "eslint": "^9.39.4"
+  }
+}

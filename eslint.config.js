@@ -2,7 +2,7 @@ import js from '@eslint/js';
 
 export default [
   {
-    ignores: ['dist/', 'deps/', 'build/', 'node_modules/'],
+    ignores: ['dist/', 'deps/', 'build/', 'node_modules/', 'emsdk-cache/'],
   },
   js.configs.recommended,
   {

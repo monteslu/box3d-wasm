@@ -1,5 +1,9 @@
 # box3d-wasm
 
+[![npm version](https://img.shields.io/npm/v/box3d-wasm.svg)](https://www.npmjs.com/package/box3d-wasm)
+[![CI](https://github.com/monteslu/box3d-wasm/actions/workflows/ci.yml/badge.svg)](https://github.com/monteslu/box3d-wasm/actions/workflows/ci.yml)
+[![license](https://img.shields.io/npm/l/box3d-wasm.svg)](LICENSE)
+
 [Box3D](https://github.com/erincatto/box3d) compiled to WebAssembly, with SIMD and optional wasm threads. Works in browsers and Node.js from a single package.
 
 Box3D is a 3D rigid body physics engine written by Erin Catto, the author of Box2D. All engine design and implementation credit belongs to him. This package only compiles his library to wasm and adds a JavaScript binding layer. Box3D is MIT licensed by Erin Catto; the full upstream license ships in this package as LICENSE.box3d.txt.

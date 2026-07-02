@@ -1,14 +1,13 @@
 {
   "name": "box3d-wasm",
   "version": "0.2.0",
-  "description": "Box3D, Erin Catto's 3D physics engine, compiled to WebAssembly with SIMD and optional wasm threads. Isomorphic: works in browsers and Node.js, auto-detecting the best build.",
+  "description": "Box3D, Erin Catto's 3D physics engine, compiled to WebAssembly with SIMD and optional wasm threads. Isomorphic: works in browsers and Node.js, auto-detecting thread support.",
   "type": "module",
   "main": "dist/entry.mjs",
   "exports": {
     ".": "./dist/entry.mjs",
     "./standard": "./dist/box3d.mjs",
     "./deluxe": "./dist/box3d.deluxe.mjs",
-    "./compat": "./dist/box3d.compat.mjs",
     "./package.json": "./package.json"
   },
   "files": [

@@ -32,15 +32,14 @@ for (let i = 0; i < 120; i++) {
 console.log(body.getPosition()); // { x: ~0, y: ~0.5, z: ~0 }
 ```
 
-The same code runs in Node.js and in the browser. The default import auto-detects the runtime and loads the best build: threads when SharedArrayBuffer is available, SIMD when the engine supports it, and a portable scalar build otherwise. The wasm file is loaded relative to the module, so bundlers that understand `new URL(..., import.meta.url)` (Vite, webpack 5, Rollup) pick it up automatically.
+The same code runs in Node.js and in the browser. The default import auto-detects thread support and loads the best build. Both builds use wasm SIMD, which every modern browser and Node.js supports. The wasm file is loaded relative to the module, so bundlers that understand `new URL(..., import.meta.url)` (Vite, webpack 5, Rollup) pick it up automatically.
 
 ## Flavours
 
-| import | SIMD | threads | picked by the default import when |
-| --- | --- | --- | --- |
-| `box3d-wasm/deluxe` | yes | yes | SIMD available and SharedArrayBuffer usable (Node.js, or a cross-origin isolated page) |
-| `box3d-wasm/standard` | yes | no | SIMD available, threads not |
-| `box3d-wasm/compat` | no | no | everything else |
+| import | threads | picked by the default import when |
+| --- | --- | --- |
+| `box3d-wasm/deluxe` | yes | SharedArrayBuffer is usable (Node.js, or a cross-origin isolated page) |
+| `box3d-wasm/standard` | no | everything else |
 
 `box3d-wasm` (the default import) runs the detection above and returns whichever module fits. Import a specific flavour directly when you want to skip detection:
 

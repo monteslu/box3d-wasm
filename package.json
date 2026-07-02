@@ -23,6 +23,7 @@
     "build": "bash scripts/build.sh",
     "build:debug": "TARGET_TYPE=Debug bash scripts/build.sh",
     "test": "node --test \"test/*.test.mjs\"",
+    "prepublishOnly": "node --test \"test/*.test.mjs\"",
     "lint": "eslint .",
     "lint:native": "clang-format --dry-run --Werror csrc/*.cpp"
   },
